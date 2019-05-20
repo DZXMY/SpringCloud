@@ -1,6 +1,11 @@
 server:
   port: 8080
   
+# 开启
+feign: 
+  hystrix: 
+    enabled: true
+
 eureka: 
   client:
     register-with-eureka: false
