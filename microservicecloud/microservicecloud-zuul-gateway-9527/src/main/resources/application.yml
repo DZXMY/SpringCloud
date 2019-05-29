@@ -1,0 +1,39 @@
+server: 
+  port: 9527
+ 
+spring: 
+  application:
+    name: microservicecloud-zuul-gateway
+ 
+eureka: 
+  client: 
+    service-url: 
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka  
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true 
+ 
+ 
+#zuul: 
+#  #ignored-services: microservicecloud-dept
+#  prefix: /xzp
+#  ignored-services: "*"
+#  routes: 
+#    mydept.serviceId: microservicecloud-dept
+#    mydept.path: /mydept/**
+ 
+zuul: 
+  #ignored-services: microservicecloud-dept  # 忽略真实路径，不能使用这个访问；单个处理
+  prefix: /xzp          #访问前缀
+  ignored-services: "*"   #批量忽略；批量处理
+  routes:   # 真实服务名字映射为mydept 对外暴露mydept
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+ 
+ 
+info:
+  app.name: xzp-microcloud
+  company.name: www.baiud.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
